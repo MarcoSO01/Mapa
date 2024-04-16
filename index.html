@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head>
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<style>
+#map {
+width: 100%;
+height: 600px;
+box-shadow: 5px 5px 5px #888;
+}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
++ 'contributors', maxZoom: 18
+});
+var map = L.map('map', {
+center: [1.6153831, -75.6042001],
+zoom: 13,
+layers: osm,
+scrollWheelZoom: false,
+});
+
+var marker = L.marker([1.6201269, -75.6042554], {
+draggable: true,
+title: 'pincha aquí'
+}).addTo(map)
+.bindPopup('Universidad de la Amazonía')
+.openPopup();
+
+var circle = L.circle([1.6150454, -75.6138167], 500, { color: 'red',
+fillColor: '#f03',
+fillOpacity: 0.5
+}).addTo(map);
+
+var marker = L.marker([1.6150454, -75.6138167], {
+draggable: true,
+title: 'pincha aquí'
+}).addTo(map)
+.bindPopup('Alcaldía de Florencia')
+.openPopup();
+
+var marker = L.marker([1.6150825220295235, -75.61332760441626], {
+draggable: true,
+title: 'pincha aquí'
+}).addTo(map)
+.bindPopup('Parque Santander')
+.openPopup();
+
+var polygon = L.polygon([
+[1.6154439599949972, -75.61299965827352],
+[1.6151833884449596, -75.61377327481536],
+[1.614485728969101, -75.61355464405354],
+[1.6146874618541953, -75.6127473920099]
+]).addTo(map)
+.bindPopup ('Parque');
+
+var pointA = new L.LatLng(1.6200308155396184, -75.60523295908123); 
+var pointB = new L.LatLng(1.620245619436067, -75.60492559630485); 
+var latlngs = [pointA, pointB];
+var polyline = L.polyline(
+latlngs, {color: 'red'}
+)
+.addTo(map)
+.bindPopup ('Avda. Juan Carlos I');
+
+L.control.scale().addTo(map);
+</script>
+</body>
+</html>
